@@ -139,7 +139,7 @@ export default function AddDefectPage() {
                     <Link href={`/inspections/${assignmentId}/forms/${formId}`}>
                         <ChevronLeft className="text-gray-600 cursor-pointer hover:bg-gray-100 rounded-full p-1" size={32} />
                     </Link>
-                    <h1 className="text-xl font-bold text-gray-800">Add Defect</h1>
+                    <h1 className="text-xl font-medium text-gray-800">Add Defect</h1>
                 </div>
 
                 {/* Form Content */}

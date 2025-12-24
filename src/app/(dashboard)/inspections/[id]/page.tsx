@@ -124,7 +124,7 @@ export default function InspectionDetailsPage() {
                 <Link href="/" className="p-1 hover:bg-gray-200 rounded-full transition-colors">
                     <ChevronLeft size={24} className="text-gray-600" />
                 </Link>
-                <h1 className="text-xl font-bold text-gray-800 uppercase">
+                <h1 className="text-xl font-medium text-gray-800 uppercase">
                     {assignment.vessel.name}
                 </h1>
             </div>
@@ -159,7 +159,7 @@ export default function InspectionDetailsPage() {
 
                     {/* Vessel Info Card */}
                     <div className="bg-[#EBF5F8] rounded-xl p-6">
-                        <h3 className="font-bold text-gray-800 mb-6">Vessel Info Card:</h3>
+                        <h3 className="font-medium text-gray-800 mb-6">Vessel Info Card:</h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6">
                             <InfoItem label="Vessel Name:" value={assignment.vessel.name} />

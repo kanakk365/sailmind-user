@@ -103,7 +103,7 @@ export default function FormDetailsPage() {
                 <Link href={`/inspections/${assignmentId}`} className="p-1 hover:bg-gray-100 rounded-full transition-colors">
                     <ChevronLeft size={24} className="text-gray-600" />
                 </Link>
-                <h1 className="text-xl font-bold text-gray-800">
+                <h1 className="text-xl font-medium text-gray-800">
                     {formDetails.title}
                 </h1>
             </div>

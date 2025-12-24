@@ -45,7 +45,7 @@ export default function DefectsPage() {
                 <Link href="/" className="p-1 hover:bg-gray-200 rounded-full transition-colors">
                     <ChevronLeft size={24} className="text-gray-600" />
                 </Link>
-                <h1 className="text-xl font-bold text-gray-800">
+                <h1 className="text-xl font-medium text-gray-800">
                     Defects
                 </h1>
             </div>
@@ -152,7 +152,7 @@ function DefectCard({ defect }: { defect: Defect }) {
 
     return (
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full">
-            <h3 className="font-bold text-gray-800 mb-4">{defect.title}</h3>
+            <h3 className="font-medium text-gray-800 mb-4">{defect.title}</h3>
 
             <div className="space-y-3 flex-1">
                 <div className="text-sm">

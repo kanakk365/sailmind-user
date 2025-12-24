@@ -35,19 +35,7 @@ export default function Sidebar() {
 
       {/* Logo Area */}
       <div className="p-6 flex items-center gap-3">
-        <div className="text-[#1B6486]">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 2L2 22H22L12 2Z" fill="#1B6486" transform="scale(0.8) translate(3,0)" />
-            <path d="M12 18C12 18 14 16 18 16" stroke="white" strokeWidth="2" />
-          </svg>
-        </div>
-        {!collapsed && <h1 className="text-2xl font-bold text-[#1B6486]">ARKA</h1>}
+        {!collapsed && <h1 className="text-2xl font-bold text-[#1B6486]">Sailmind</h1>}
       </div>
 
       {/* Navigation Links */}

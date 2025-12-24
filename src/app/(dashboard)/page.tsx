@@ -98,7 +98,7 @@ export default function HomePage() {
     <div className="flex flex-col h-full">
       {/* Welcome Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">
+        <h1 className="text-2xl font-medium text-gray-800">
           Welcome back, <span className="text-gray-900">{user?.email?.split("@")[0]?.split("+")[0] || "John"}</span> 👋
         </h1>
       </div>
@@ -207,7 +207,7 @@ function InspectionCard({
       {/* Header with Title and Badge */}
       <div className="flex items-start justify-between mb-2">
         <div>
-          <h3 className="font-bold text-gray-800 text-lg">{assignment.vessel?.name || "Unknown Vessel"}</h3>
+          <h3 className="text-gray-800 text-lg">{assignment.vessel?.name || "Unknown Vessel"}</h3>
           <p className="text-sm text-gray-400">IMO {assignment.vessel?.imo_number || "N/A"}</p>
         </div>
         <span className={`text-xs font-semibold px-3 py-1 rounded-full ${getStatusColor(displayStatus)}`}>
@@ -232,7 +232,7 @@ function InspectionCard({
       {/* Action Button */}
       <Link href={`/inspections/${assignment.assignment_id}`}>
         <button
-          className="w-full py-3 text-white font-semibold rounded-lg transition-opacity hover:opacity-90"
+          className="w-full py-2 text-white rounded-lg transition-opacity hover:opacity-90"
           style={{
             background: "linear-gradient(90deg, #1B6486 0%, #1F9EBD 100%)",
           }}

@@ -176,7 +176,7 @@ export default function LoginPage() {
                     </div>
 
                     <div className="mt-12 text-xs text-gray-400 text-center leading-relaxed">
-                        By signing up, you agree to the <a href="#" className="font-bold text-gray-600">Terms of Service</a> and <a href="#" className="font-bold text-gray-600">Data Processing Agreement</a>
+                        By signing up, you agree to the <a href="#" className="font-medium text-gray-600">Terms of Service</a> and <a href="#" className="font-medium text-gray-600">Data Processing Agreement</a>
                     </div>
                 </div>
             </div>
