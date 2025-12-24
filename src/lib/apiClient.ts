@@ -31,7 +31,11 @@ export const apiClient = async (
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
     // Interceptor logic for error handling
-    if (response.status === 413 || response.status === 401) {
+    if (
+      response.status === 413 ||
+      response.status === 401 ||
+      response.status === 403
+    ) {
       // Auto logout on 413 (as requested) or 401 (Unauthorized)
       useAuthStore.getState().logout();
 

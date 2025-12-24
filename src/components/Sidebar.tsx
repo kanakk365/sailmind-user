@@ -7,16 +7,24 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
-  LayoutGrid
+  LayoutGrid,
+  LogOut
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
-  const user = useAuthStore((state) => state.user);
+  const router = useRouter();
+  const { user, logout } = useAuthStore();
+  const [showLogout, setShowLogout] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
@@ -54,8 +62,23 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer User Profile */}
-      <div className="p-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+      <div className="p-4 border-t border-gray-100 relative">
+        {showLogout && (
+          <div className="absolute bottom-full left-0 w-full px-4 mb-2 z-20">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 bg-white border border-gray-200 shadow-lg rounded-xl p-3 text-red-500 hover:bg-red-50 transition-colors"
+            >
+              <LogOut size={18} />
+              {!collapsed && <span className="font-medium text-sm">Log Out</span>}
+            </button>
+          </div>
+        )}
+
+        <div
+          onClick={() => setShowLogout(!showLogout)}
+          className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
+        >
           <div className="w-10 h-10 rounded-full bg-[#1B6486] text-white flex items-center justify-center text-sm font-medium">
             {user?.email?.charAt(0).toUpperCase() || "J"}
           </div>
@@ -67,7 +90,7 @@ export default function Sidebar() {
               </p>
             </div>
           )}
-          {!collapsed && <ChevronRight size={16} className="text-gray-400" />}
+          {!collapsed && <ChevronRight size={16} className={`text-gray-400 transition-transform ${showLogout ? "rotate-[-90deg]" : ""}`} />}
         </div>
       </div>
     </div>
