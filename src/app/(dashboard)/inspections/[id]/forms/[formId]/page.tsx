@@ -160,9 +160,11 @@ export default function FormDetailsPage() {
 
             {/* Footer */}
             <div className="flex justify-end mt-8 ">
-                <button className="px-6 py-2.5 mb-6 bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-semibold rounded-lg transition-colors shadow-sm cursor-pointer">
-                    Add Defects
-                </button>
+                <Link href={`/inspections/${assignmentId}/forms/${formId}/add-defect`}>
+                    <button className="px-6 py-2.5 mb-6 bg-[#D32F2F] hover:bg-[#B71C1C] text-white font-semibold rounded-lg transition-colors shadow-sm cursor-pointer">
+                        Add Defects
+                    </button>
+                </Link>
             </div>
         </div>
     );

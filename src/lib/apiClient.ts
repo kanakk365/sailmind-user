@@ -13,11 +13,14 @@ export const apiClient = async (
   // Get the access token from the store (this works even outside components because it's Zustand)
   const token = useAuthStore.getState().accessToken;
 
-  const headers = {
-    "Content-Type": "application/json",
+  const headers: Record<string, string> = {
     ...(token && { Authorization: `Bearer ${token}` }),
     ...options.headers,
   };
+
+  if (!(options.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
 
   const config = {
     ...options,
