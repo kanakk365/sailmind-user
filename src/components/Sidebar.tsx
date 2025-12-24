@@ -7,15 +7,21 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
-  User,
-  LogOut,
-  Settings,
   LayoutGrid
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useAuthStore } from "@/store/authStore";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
+  const user = useAuthStore((state) => state.user);
+
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
 
   return (
     <div className={`relative flex flex-col h-screen bg-white border-r border-gray-200 transition-all duration-300 ${collapsed ? "w-20" : "w-64"}`}>
@@ -30,43 +36,47 @@ export default function Sidebar() {
       {/* Logo Area */}
       <div className="p-6 flex items-center gap-3">
         <div className="text-[#1B6486]">
-          {/* Simple Boat/Logo representation */}
-            <svg
+          <svg
             width="32"
             height="32"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            >
+          >
             <path d="M12 2L2 22H22L12 2Z" fill="#1B6486" transform="scale(0.8) translate(3,0)" />
             <path d="M12 18C12 18 14 16 18 16" stroke="white" strokeWidth="2" />
-            </svg>
+          </svg>
         </div>
         {!collapsed && <h1 className="text-2xl font-bold text-[#1B6486]">ARKA</h1>}
       </div>
 
       {/* Navigation Links */}
       <nav className="flex-1 px-4 py-4 space-y-2">
-        <NavItem icon={<Home size={20} />} label="Home" collapsed={collapsed} />
-        <NavItem icon={<LayoutGrid size={20} />} label="Forms" collapsed={collapsed} />
-        <NavItem
-          icon={<AlertCircle size={20} />}
-          label="Defects"
-          active
-          collapsed={collapsed}
-        />
+        <Link href="/">
+          <NavItem icon={<Home size={20} />} label="Home" active={isActive("/")} collapsed={collapsed} />
+        </Link>
+        <Link href="/defects">
+          <NavItem
+            icon={<AlertCircle size={20} />}
+            label="Defects"
+            active={isActive("/defects")}
+            collapsed={collapsed}
+          />
+        </Link>
       </nav>
 
       {/* Footer User Profile */}
       <div className="p-4 border-t border-gray-100">
         <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
           <div className="w-10 h-10 rounded-full bg-[#1B6486] text-white flex items-center justify-center text-sm font-medium">
-            J
+            {user?.email?.charAt(0).toUpperCase() || "J"}
           </div>
           {!collapsed && (
             <div className="flex-1 overflow-hidden">
               <p className="text-xs text-gray-500">Welcome 👋</p>
-              <p className="text-sm font-semibold text-gray-900 truncate">John</p>
+              <p className="text-sm font-semibold text-gray-900 truncate">
+                {user?.email?.split("@")[0] || "John"}
+              </p>
             </div>
           )}
           {!collapsed && <ChevronRight size={16} className="text-gray-400" />}
@@ -89,16 +99,15 @@ function NavItem({
 }) {
   return (
     <div
-      className={`flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer transition-colors group ${
-        active
-          ? "text-white shadow-md"
-          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-      }`}
+      className={`flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer transition-colors group ${active
+        ? "text-white shadow-md"
+        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+        }`}
       style={
         active
           ? {
-              background: "linear-gradient(90deg, #1B6486 0%, #1F9EBD 100%)",
-            }
+            background: "linear-gradient(90deg, #1B6486 0%, #1F9EBD 100%)",
+          }
           : {}
       }
     >
